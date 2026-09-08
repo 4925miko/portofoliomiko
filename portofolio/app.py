@@ -19,7 +19,7 @@ PROFILE = {
     "email": "miko.gamping@email.com",
     "whatsapp": "https://wa.me/6285747808835",
     "instagram": "https://www.instagram.com/_mikoaja?stkn=bW81aGs5Zm14MzNo&utm_source=qr",
-    "photo": "https://raw.githubusercontent.com/4925miko/portofolio/main/assets/profile.jpeg",
+    "photo": "https://raw.githubusercontent.com/4925miko/portofoliomiko/main/portofolio/assets/profile.jpeg",
     "github": "https://github.com/4925miko",
     "cv_url": "https://canva.link/7n8331nv7f65hpc",
 }
