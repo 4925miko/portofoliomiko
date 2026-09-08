@@ -92,7 +92,7 @@ PROJECTS = [
             "untuk membantu siswa kelas 2 memahami nilai-nilai Pancasila."
         ),
         "tools": ["Processing", "UI/UX", "Multimedia", "MDLC"],
-        "image": "https://raw.githubusercontent.com/4925miko/portofolio/main/assets/projects/gamepancasila.png",
+        "image": "https://raw.githubusercontent.com/4925miko/portofoliomiko/main/portofolio/assets/projects/gamepancasila.png",
         "demo": "https://drive.google.com/drive/folders/1AvFV6_gHyihYT-XQ6ZurVYKOaMDdKQmz?usp=sharing",
         
     },
@@ -105,7 +105,7 @@ PROJECTS = [
             "visual modern, dan pengalaman pengguna yang sederhana."
         ),
         "tools": ["HTML", "CSS", "JavaScript"],
-        "image": "https://raw.githubusercontent.com/4925miko/portofolio/main/assets/projects/dwikarya.png",
+        "image": "https://raw.githubusercontent.com/4925miko/portofoliomiko/main/portofolio/assets/projects/dwikarya.png",
         "demo": "https://dwikarya-umkm.streamlit.app/",
         
     },
