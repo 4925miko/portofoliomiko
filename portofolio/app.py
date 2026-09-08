@@ -1,8 +1,9 @@
-
 import streamlit as st
+from pathlib import Path
+import base64
 
 st.set_page_config(
-    page_title="Portofolio | UI/UX & Multimedia",
+    page_title="Portofolio |  Multimedia",
     page_icon="✦",
     layout="wide",
     initial_sidebar_state="collapsed",
@@ -12,18 +13,54 @@ st.set_page_config(
 # DATA — EDIT THIS SECTION
 # =========================
 PROFILE = {
-    "name": "Your Name",
-    "role": "UI/UX Designer & Spesialis Multimedia",
+    "name": "Herlambang Sujatmiko",
+    "role": "UI/UX, Designer Canva & Spesialis Multimedia",
     "location": "Yogyakarta, Indonesia",
-    "email": "yourname@email.com",
-    "linkedin": "https://www.linkedin.com/",
-    "github": "https://github.com/",
-    "cv_url": "#",
+    "email": "miko.gamping@email.com",
+    "whatsapp": "https://wa.me/6285747808835",
+    "instagram": "https://www.instagram.com/_mikoaja?stkn=bW81aGs5Zm14MzNo&utm_source=qr",
+    "photo": "assets/profile.jpeg",
+    "github": "https://github.com/4925miko",
+    "cv_url": "https://canva.link/7n8331nv7f65hpc",
 }
+
+# =========================
+# PROJECT IMAGES
+# =========================
+BASE_DIR = Path(__file__).resolve().parent
+PROJECTS_DIR = BASE_DIR / "assets" / "projects"
+
+
+def project_image_src(filename, title):
+    """Baca gambar project langsung dari folder assets/projects."""
+    if not filename:
+        return f"https://placehold.co/1200x720/17171c/f4f4f5?text={title.replace(' ', '+')}"
+
+    # Tetap mendukung URL gambar kalau suatu saat diperlukan.
+    if filename.startswith(("http://", "https://", "data:")):
+        return filename
+
+    image_path = PROJECTS_DIR / filename
+
+    if image_path.exists():
+        suffix = image_path.suffix.lower()
+        mime = {
+            ".jpg": "image/jpeg",
+            ".jpeg": "image/jpeg",
+            ".png": "image/png",
+            ".webp": "image/webp",
+            ".gif": "image/gif",
+        }.get(suffix, "application/octet-stream")
+
+        encoded = base64.b64encode(image_path.read_bytes()).decode("utf-8")
+        return f"data:{mime};base64,{encoded}"
+
+    # Kalau file belum dimasukkan, kartu tetap tampil dengan placeholder.
+    return f"https://placehold.co/1200x720/17171c/f4f4f5?text=Upload+{title.replace(' ', '+')}"
 
 ABOUT = """
 Saya merupakan Fresh Graduate S1 Informatika, Universitas AMIKOM Yogyakarta,
-dengan penjurusan Multimedia dan fokus pada bidang UI/UX Design serta Multimedia.
+dengan penjurusan Multimedia dan fokus pada bidang UI/UX, Design Canva serta Multimedia.
 Memiliki kemampuan dalam merancang antarmuka yang kreatif, fungsional, dan
 berorientasi pada pengalaman pengguna, serta mengoperasikan berbagai software
 pendukung pekerjaan di bidang desain dan multimedia.
@@ -34,10 +71,16 @@ semangat untuk terus belajar dan mengembangkan keterampilan di bidang teknologi 
 """
 
 SKILLS = [
-    "UI/UX Design", "Figma", "Wireframing", "Prototyping",
-    "User Research", "HTML", "CSS", "JavaScript",
-    "Canva", "Video Editing", "Multimedia Design", "Streamlit"
+    "UI/UX Design", "Figma", "Communication Skills", "Prototyping","Analisis Data","Data Entry",
+    "Customer Service", "HTML", "CSS", "JavaScript","Processing","Problem Solving","Game 2D","General Office Work",
+    "Canva", "Foto&Video Editing", "Multimedia Design", "Streamlit","Media Interaktif","Leadership","Desain Grafis"
 ]
+
+# Gambar project cukup diletakkan di: assets/projects/
+# Contoh:
+# assets/projects/game-pancasila.jpg
+# assets/projects/dwikarya.png
+# assets/projects/ui-mobile.jpg
 
 PROJECTS = [
     {
@@ -49,9 +92,9 @@ PROJECTS = [
             "untuk membantu siswa kelas 2 memahami nilai-nilai Pancasila."
         ),
         "tools": ["Processing", "UI/UX", "Multimedia", "MDLC"],
-        "image": "https://placehold.co/1200x720/17171c/f4f4f5?text=Game+Edukasi+Pancasila",
-        "demo": "#",
-        "case_study": "#",
+        "image": "gamepancasila.png",
+        "demo": "https://drive.google.com/drive/folders/1AvFV6_gHyihYT-XQ6ZurVYKOaMDdKQmz?usp=sharing",
+        
     },
     {
         "title": "Landing Page Dwikarya",
@@ -62,9 +105,9 @@ PROJECTS = [
             "visual modern, dan pengalaman pengguna yang sederhana."
         ),
         "tools": ["HTML", "CSS", "JavaScript"],
-        "image": "https://placehold.co/1200x720/17171c/f4f4f5?text=Dwikarya+Landing+Page",
-        "demo": "#",
-        "case_study": "#",
+        "image": "dwikarya.png",
+        "demo": "https://dwikarya-umkm.streamlit.app/",
+        
     },
     {
         "title": "Konsep UI Aplikasi Mobile",
@@ -75,9 +118,9 @@ PROJECTS = [
             "mulai dari wireframe hingga prototipe high-fidelity."
         ),
         "tools": ["Figma", "Wireframe", "Prototype"],
-        "image": "https://placehold.co/1200x720/17171c/f4f4f5?text=Konsep+UI+Aplikasi",
+        "image": "ui-mobile.jpg",
         "demo": "#",
-        "case_study": "#",
+        
     },
 ]
 
@@ -403,6 +446,67 @@ header[data-testid="stHeader"]{
     .hero-title{font-size:3.45rem;}
     .project-desc{min-height:auto;}
 }
+
+.profile-photo-wrap{
+    position:absolute;
+    right:0;
+    top:0;
+    width:220px;
+    z-index:2;
+    transform:translateY(-8px);
+}
+.profile-photo{
+    width:100%;
+    aspect-ratio:1/1;
+    object-fit:cover;
+    border-radius:24px;
+    border:1px solid rgba(255,255,255,.12);
+    box-shadow:0 20px 55px rgba(0,0,0,.32);
+    background:#15151c;
+}
+.profile-photo-fallback{
+    width:100%;
+    aspect-ratio:1/1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:24px;
+    border:1px solid rgba(255,255,255,.12);
+    background:
+      radial-gradient(circle at 30% 20%, rgba(167,139,250,.2), transparent 34%),
+      #15151c;
+    color:#f5f5f7;
+    font-family:'Playfair Display',serif;
+    font-size:3rem;
+    box-shadow:0 20px 55px rgba(0,0,0,.32);
+}
+.social-buttons{
+    display:flex;
+    gap:.55rem;
+    flex-wrap:wrap;
+    margin-top:1rem;
+}
+.social-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:.48rem .72rem;
+    border:1px solid var(--line);
+    border-radius:999px;
+    background:rgba(255,255,255,.02);
+    color:#e4e4e7!important;
+    text-decoration:none!important;
+    font-size:.78rem;
+    transition:.2s ease;
+}
+.social-btn:hover{
+    transform:translateY(-2px);
+    border-color:#52525b;
+}
+@media (max-width:900px){
+    .profile-photo-wrap{display:none;}
+}
+
 </style>
 """, unsafe_allow_html=True)
 
@@ -419,6 +523,35 @@ st.markdown(f"""
 # =========================
 # HERO
 # =========================
+
+_photo_path = BASE_DIR / PROFILE["photo"]
+
+if _photo_path.exists():
+    _photo_b64 = base64.b64encode(_photo_path.read_bytes()).decode("utf-8")
+
+    _photo_mime = {
+        ".jpg": "image/jpeg",
+        ".jpeg": "image/jpeg",
+        ".png": "image/png",
+        ".webp": "image/webp",
+        ".gif": "image/gif",
+    }.get(_photo_path.suffix.lower(), "image/png")
+
+    _photo_html = (
+        f'<img class="profile-photo" '
+        f'src="data:{_photo_mime};base64,{_photo_b64}" '
+        f'alt="Foto profil {PROFILE["name"]}">'
+    )
+else:
+    _photo_html = '<div class="profile-photo-fallback">HS</div>'
+
+_social_html = (
+    f'<div class="social-buttons">'
+    f'<a class="social-btn" href="{PROFILE["whatsapp"]}" target="_blank">WhatsApp</a>'
+    f'<a class="social-btn" href="{PROFILE["instagram"]}" target="_blank">Instagram</a>'
+    f'</div>'
+)
+
 st.markdown(f"""
 <div id="home">
     <div class="hero-kicker"><span class="dot"></span> Open to work & collaboration</div>
@@ -433,11 +566,15 @@ st.markdown(f"""
     </div>
     <div class="btnrow">
         <a class="btn btn-primary" href="#projects">Lihat karya pilihan ↗</a>
-        <a class="btn btn-secondary" href="mailto:{PROFILE['email']}">Mari berdiskusi</a>
-    </div>
+        <a class="btn btn-secondary"
+   href="https://mail.google.com/mail/?view=cm&fs=1&to={PROFILE['email']}&su=Konsultasi%20Proyek%20Portofolio"
+   target="_blank">
+    Mari berdiskusi
+</a>
+    {_social_html}
+    <div class="profile-photo-wrap">{_photo_html}</div>
 </div>
 """, unsafe_allow_html=True)
-
 # =========================
 # ABOUT
 # =========================
@@ -450,9 +587,9 @@ c1, c2, c3 = st.columns(3)
 with c1:
     st.markdown('<div class="stat"><div class="stat-num">S1</div><div class="stat-label">Informatika • Universitas AMIKOM Yogyakarta</div></div>', unsafe_allow_html=True)
 with c2:
-    st.markdown('<div class="stat"><div class="stat-num">UI/UX</div><div class="stat-label">Desain berorientasi pengguna & prototipe</div></div>', unsafe_allow_html=True)
+    st.markdown('<div class="stat"><div class="stat-num">UI/UX</div><div class="stat-label">Desain figma berorientasi pengguna & prototipe</div></div>', unsafe_allow_html=True)
 with c3:
-    st.markdown('<div class="stat"><div class="stat-num">Multi</div><div class="stat-label">Desain • Multimedia • Front-End</div></div>', unsafe_allow_html=True)
+    st.markdown('<div class="stat"><div class="stat-num">Multimedia</div><div class="stat-label">Desain Canva • Multimedia • Front-End • Editor Foto&Video </div></div>', unsafe_allow_html=True)
 
 st.markdown('<div class="skillwrap">' + ''.join([f'<span class="skill">{s}</span>' for s in SKILLS]) + '</div>', unsafe_allow_html=True)
 st.markdown('</div>', unsafe_allow_html=True)
@@ -465,7 +602,7 @@ st.markdown('<div class="eyebrow">02 / Proyek Pilihan</div>', unsafe_allow_html=
 st.markdown('<div class="section-title">Proyek yang mengubah ide<br>menjadi pengalaman.</div>', unsafe_allow_html=True)
 st.markdown(
     '<div class="section-copy">Beberapa proyek pilihan. Struktur ini dibuat agar mudah dikembangkan—'
-    'kamu bisa menambahkan proyek sebanyak yang diperlukan dari bagian <b>PROJECTS</b> pada file app.py.</div>',
+    ' <b>PROJECTS</b> pada file app.py.</div>',
     unsafe_allow_html=True
 )
 
@@ -478,9 +615,10 @@ for i in range(0, len(PROJECTS), 2):
         p = PROJECTS[idx]
         with cols[j]:
             tags = ''.join([f'<span class="tag">{t}</span>' for t in p["tools"]])
+            image_src = project_image_src(p["image"], p["title"])
             st.markdown(f"""
             <div class="project">
-                <img src="{p['image']}" alt="{p['title']}">
+                <img src="{image_src}" alt="{p['title']}">
                 <div class="project-body">
                     <div class="project-meta">
                         <span>{p['category']}</span>
@@ -490,8 +628,7 @@ for i in range(0, len(PROJECTS), 2):
                     <div class="project-desc">{p['description']}</div>
                     <div class="tags">{tags}</div>
                     <div class="mini-links">
-                        <a href="{p['case_study']}" target="_blank">Case Study ↗</a>
-                        <a href="{p['demo']}" target="_blank">Live Demo ↗</a>
+                        <a href="{p['demo']}" target="_blank">TO Projects & Demo ↗</a>
                     </div>
                 </div>
             </div>
@@ -508,8 +645,8 @@ st.markdown('<div class="section-title">Dari konsep hingga<br>eksekusi visual.</
 
 e1, e2, e3 = st.columns(3)
 cards = [
-    ("01", "UI/UX Design", "Wireframe, alur pengguna, desain antarmuka, prototipe, dan evaluasi pengalaman pengguna."),
-    ("02", "Multimedia", "Konten visual, media interaktif, penyuntingan video, dan kebutuhan desain digital lainnya."),
+    ("01", "UI/UX Design", "Alur pengguna, desain antarmuka, prototipe, dan evaluasi pengalaman pengguna."),
+    ("02", "Multimedia", "Konten visual, media interaktif&Game 2D, Desain Canva, Penyuntingan video, Dan Kebutuhan desain digital lainnya."),
     ("03", "Front-End", "Implementasi antarmuka web menggunakan HTML, CSS, JavaScript, serta prototipe menggunakan Streamlit."),
 ]
 for col, (num, title, text) in zip([e1, e2, e3], cards):
@@ -534,11 +671,14 @@ st.markdown(f"""
     <div class="contact-title">Punya proyek?<br><span class="gradient">Mari kita wujudkan.</span></div>
     <div class="contact-copy">
         Terbuka untuk kesempatan kerja, magang, freelance, dan kolaborasi di bidang
-        UI/UX Design, Multimedia, maupun Front-End.
+        UI/UX Design, Multimedia, maupun Desain Canva.
     </div>
     <div class="btnrow">
-        <a class="btn btn-primary" href="mailto:{PROFILE['email']}">Kirim Email ↗</a>
-        <a class="btn btn-secondary" href="{PROFILE['linkedin']}" target="_blank">LinkedIn</a>
+        <a class="btn btn-secondary"
+   href="https://mail.google.com/mail/?view=cm&fs=1&to={PROFILE['email']}&su=Konsultasi%20Proyek%20Portofolio"
+   target="_blank">
+    Mari berdiskusi
+</a>
         <a class="btn btn-secondary" href="{PROFILE['github']}" target="_blank">GitHub</a>
     </div>
 </div>
