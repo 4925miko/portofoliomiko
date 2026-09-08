@@ -110,16 +110,17 @@ PROJECTS = [
         
     },
     {
-        "title": "Konsep UI Aplikasi Mobile",
-        "category": "UI/UX • Prototipe",
+        "title": "Kumpulan Multimedia Saya",
+        "category": "Video&Foto • Desain • Game 2d",
         "year": "2026",
         "description": (
-            "Konsep antarmuka aplikasi mobile dengan pendekatan desain berorientasi pengguna, "
-            "mulai dari wireframe hingga prototipe high-fidelity."
+            "Kumpulan project multimedia yang mencakup pembuatan dan editing video, "
+        "pengolahan foto, desain grafis menggunakan Canva, serta pengembangan game 2D. "
+        "Project ini menampilkan kemampuan dalam mengolah konten visual dan multimedia "
         ),
-        "tools": ["Figma", "Wireframe", "Prototype"],
-        "image": "ui-mobile.jpg",
-        "demo": "#",
+        "tools": ["Canva", "Video Editing", "Photo Editing", "Processing Game 2D"],
+        "image": "https://raw.githubusercontent.com/4925miko/portofoliomiko/main/portofolio/assets/projects/Video.png",
+        "demo": "https://drive.google.com/file/d/1z1nM1vli-OKZXc1hOBKHHbQ52o5JcChu/view?usp=sharing",
         
     },
 ]
