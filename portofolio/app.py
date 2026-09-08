@@ -19,7 +19,7 @@ PROFILE = {
     "email": "miko.gamping@email.com",
     "whatsapp": "https://wa.me/6285747808835",
     "instagram": "https://www.instagram.com/_mikoaja?stkn=bW81aGs5Zm14MzNo&utm_source=qr",
-    "photo": "https://raw.githubusercontent.com/4925miko/NAMA-REPO/main/assets/profile.jpeg",
+    "photo": "https://raw.githubusercontent.com/4925miko/portofolio/main/assets/profile.jpeg",
     "github": "https://github.com/4925miko",
     "cv_url": "https://canva.link/7n8331nv7f65hpc",
 }
@@ -92,7 +92,7 @@ PROJECTS = [
             "untuk membantu siswa kelas 2 memahami nilai-nilai Pancasila."
         ),
         "tools": ["Processing", "UI/UX", "Multimedia", "MDLC"],
-        "image": "https://raw.githubusercontent.com/4925miko/NAMA-REPO/main/assets/projects/gamepancasila.png",
+        "image": "https://raw.githubusercontent.com/4925miko/portofolio/main/assets/projects/gamepancasila.png",
         "demo": "https://drive.google.com/drive/folders/1AvFV6_gHyihYT-XQ6ZurVYKOaMDdKQmz?usp=sharing",
         
     },
@@ -105,7 +105,7 @@ PROJECTS = [
             "visual modern, dan pengalaman pengguna yang sederhana."
         ),
         "tools": ["HTML", "CSS", "JavaScript"],
-        "image": "https://raw.githubusercontent.com/4925miko/NAMA-REPO/main/assets/projects/dwikarya.png",
+        "image": "https://raw.githubusercontent.com/4925miko/portofolio/main/assets/projects/dwikarya.png",
         "demo": "https://dwikarya-umkm.streamlit.app/",
         
     },
