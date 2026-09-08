@@ -524,24 +524,12 @@ st.markdown(f"""
 # HERO
 # =========================
 
-_photo_path = BASE_DIR / PROFILE["photo"]
+_photo_html = (
+    f'<img class="profile-photo" '
+    f'src="{PROFILE["photo"]}" '
+    f'alt="Foto profil {PROFILE["name"]}">'
+)
 
-if _photo_path.exists():
-    _photo_b64 = base64.b64encode(_photo_path.read_bytes()).decode("utf-8")
-
-    _photo_mime = {
-        ".jpg": "image/jpeg",
-        ".jpeg": "image/jpeg",
-        ".png": "image/png",
-        ".webp": "image/webp",
-        ".gif": "image/gif",
-    }.get(_photo_path.suffix.lower(), "image/png")
-
-    _photo_html = (
-        f'<img class="profile-photo" '
-        f'src="data:{_photo_mime};base64,{_photo_b64}" '
-        f'alt="Foto profil {PROFILE["name"]}">'
-    )
 else:
     _photo_html = '<div class="profile-photo-fallback">HS</div>'
 
