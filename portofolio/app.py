@@ -530,16 +530,12 @@ _photo_html = (
     f'alt="Foto profil {PROFILE["name"]}">'
 )
 
-else:
-    _photo_html = '<div class="profile-photo-fallback">HS</div>'
-
 _social_html = (
     f'<div class="social-buttons">'
     f'<a class="social-btn" href="{PROFILE["whatsapp"]}" target="_blank">WhatsApp</a>'
     f'<a class="social-btn" href="{PROFILE["instagram"]}" target="_blank">Instagram</a>'
     f'</div>'
 )
-
 st.markdown(f"""
 <div id="home">
     <div class="hero-kicker"><span class="dot"></span> Open to work & collaboration</div>
